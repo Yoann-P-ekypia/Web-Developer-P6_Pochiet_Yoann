@@ -11,12 +11,11 @@ app.use(express.json());
 // On importe mongoose pour pouvoir utiliser la base de données
 const mongoose = require('mongoose');
 
-mongoose.connect('openclassroomsyoannprojet6://localhost:<Graphiste3825>@admin.mongodb.net',
+mongoose.connect('mongodb+srv://openclassroomsyoannprojet6:Graphiste3825@cluster0.lkq4bay.mongodb.net/baseprojet6?retryWrites=true&w=majority',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
-
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
