@@ -1,13 +1,17 @@
 // import des modules npm - Ajout des plugins externes
 const express = require('express');
 const bodyParser = require('body-parser');
+
 // On importe mongoose pour pouvoir utiliser la base de données
 const mongoose = require('mongoose');
 
+const path = require('path');
+
 
 // On importe le router
-const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
+const stuffRoutes = require('./routes/stuff');
+const sauceRoutes = require('./routes/sauce');
 
 mongoose.connect('mongodb+srv://openclassroomsyoannprojet6:Graphiste3825@cluster0.lkq4bay.mongodb.net/baseprojet6?retryWrites=true&w=majority',
     { useNewUrlParser: true,
@@ -29,8 +33,10 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api/stuff', stuffRoutes);
-app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', sauceRoutes);
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
