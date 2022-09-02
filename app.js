@@ -8,10 +8,12 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 
-// On importe le router
+// On importe le router 4
 const userRoutes = require('./routes/user');
-const stuffRoutes = require('./routes/stuff');
 const sauceRoutes = require('./routes/sauce');
+
+
+// Récupération de la liste de Sauce en vente
 
 mongoose.connect('mongodb+srv://openclassroomsyoannprojet6:Graphiste3825@cluster0.lkq4bay.mongodb.net/baseprojet6?retryWrites=true&w=majority',
     { useNewUrlParser: true,
@@ -19,7 +21,7 @@ mongoose.connect('mongodb+srv://openclassroomsyoannprojet6:Graphiste3825@cluster
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-// Création d'une application express
+// Création d'une application express Ajoutez des middlewares 3
 const app = express();
 
 app.use(express.json());
@@ -34,7 +36,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/auth', userRoutes);
-app.use('/api/stuff', stuffRoutes);
 app.use('/api/sauces', sauceRoutes);
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

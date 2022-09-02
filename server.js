@@ -1,5 +1,11 @@
+// Démarrez un serveur basique 2
+
 const http = require('http');
 const app = require('./app');
+const rateLimit = require('express-rate-limit')
+
+
+// Améliorez server.js normalizePort et errorHandler
 
 const normalizePort = val => {
     const port = parseInt(val, 10);
@@ -12,6 +18,19 @@ const normalizePort = val => {
     }
     return false;
 };
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter)
+
+// Connexion server installer EXPRESS 3
+
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 

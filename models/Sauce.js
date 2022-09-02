@@ -1,3 +1,5 @@
+// Créez un schéma de données
+
 const mongoose = require('mongoose');
 
 //Model des sauces

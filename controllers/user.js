@@ -1,8 +1,13 @@
+// CONTROLLERS USER SAUCE
+
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
+
+// Configurez les routes d'authentification
 exports.signup = (req, res, next) => {
 
     bcrypt.hash(req.body.password, 10)
@@ -18,6 +23,7 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+// Vérifiez les informations d'identification d'un utilisateur
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
